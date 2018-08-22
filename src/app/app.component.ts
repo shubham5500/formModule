@@ -14,21 +14,29 @@ export class AppComponent {
   constructor(private socialAuthService: AuthService ){  
   }
    
-  @ViewChild('formRef') signupForm;
+  @ViewChild('formRef') signupForm: NgForm;
   @ViewChild('emailInp') emailInp;
   defaultPet = 'pet';
   defaultName = 'pet';
   answer = '';
+  genders = ['male', 'female']
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+    this.signupForm.form.patchValue({
+      userData: {
+        username: 'Yolo'
+      }
+    })
   }
 
   onSubmit(form: NgForm){
     // console.log('Submitted!', form);
-    // console.log('Submitted!', this.signupForm);
-    console.log('emailInp!', this.emailInp);
+    console.log('Submitted!', this.signupForm);
+    this.signupForm.reset();
   }
+
+
   // public socialSignIn(socialPlatform : string) {
   //   let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
   //   this.socialAuthService.signIn(socialPlatformProvider).then(
